@@ -1,1 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presente Especial</title>
+    <style>
+        /* Estilos gerais da página */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fdf5e6; /* Cor de fundo suave */
+        }
 
+        /* Estilo do botão de presente */
+        .botao-presente {
+            font-size: 100px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .botao-presente:hover {
+            transform: scale(1.1); /* Dá uma leve aumentada ao passar o mouse */
+        }
+
+        /* Estilo da aba (modal) que sobrepõe a tela */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro transparente */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        /* Classe para esconder a aba inicialmente */
+        .oculto {
+            display: none !important;
+        }
+
+        /* Caixinha branca onde os números vão ficar */
+        .conteudo-modal {
+            background-color: white;
+            padding: 60px 100px;
+            border-radius: 20px;
+            display: flex;
+            gap: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        }
+
+        /* Estilo dos números */
+        .numero {
+            font-size: 120px;
+            font-weight: bold;
+            color: #e91e63;
+        }
+
+        /* Aplicando as animações nos números */
+        #num6 {
+            animation: sobeDesce 0.8s ease-in-out infinite alternate;
+        }
+
+        #num7 {
+            animation: desceSobe 0.8s ease-in-out infinite alternate;
+        }
+
+        /* Keyframes: Animação do 6 (começa subindo) */
+        @keyframes sobeDesce {
+            0% { transform: translateY(-30px); }
+            100% { transform: translateY(30px); }
+        }
+
+        /* Keyframes: Animação do 7 (começa descendo) */
+        @keyframes desceSobe {
+            0% { transform: translateY(30px); }
+            100% { transform: translateY(-30px); }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <button id="btnPresente" class="botao-presente">🎁</button>
+    </div>
+
+    <div id="abaNumeros" class="modal oculto">
+        <div class="conteudo-modal">
+            <span class="numero" id="num6">6</span>
+            <span class="numero" id="num7">7</span>
+        </div>
+    </div>
+
+    <script>
+        // Dispara o alerta assim que a página carrega
+        window.onload = function() {
+            alert("Você ganhou um presente! Deseja abri-lo?");
+        };
+
+        // Pega os elementos do HTML pelo ID
+        const btnPresente = document.getElementById('btnPresente');
+        const abaNumeros = document.getElementById('abaNumeros');
+
+        // Adiciona a ação de clique no botão do presente
+        btnPresente.addEventListener('click', function() {
+            // Remove a classe 'oculto' para mostrar a aba com os números
+            abaNumeros.classList.remove('oculto');
+        });
+
+        // Extra: Adiciona a opção de fechar a aba se clicar nela de novo
+        abaNumeros.addEventListener('click', function() {
+            abaNumeros.classList.add('oculto');
+        });
+    </script>
+</body>
+</html>
